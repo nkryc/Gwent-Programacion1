@@ -3,7 +3,7 @@ import random
 # Facciones para las cartas
 CARTAS_FACCION = {
     "Reinos del Norte": ["Espadachín","Arquero","Caballero","Hechicera","Catapulta"],
-    "Monstruos": ["Ghoul","Nekker","Vampira","Wyvern","Golem"]
+    "Monstruos": ["Ghoul","Nekker","Vampira","Wyvern","Ice Gigant"]
 }
 
 def generar_carta_aleatoria(faccion):
