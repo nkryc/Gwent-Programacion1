@@ -9,6 +9,9 @@ def texto(msg, x, y, color=configuracion.BLANCO):
     pantalla.blit(img, (x, y))
 
 def dibujar():
+
+    pantalla.blit(configuracion.fondo, (0, 0))
+    
     for i in range(len(configuracion.mano_jugador)):
         pygame.draw.rect(pantalla, configuracion.AZUL, (i * 150 + 20, 500, 120, 80))
         nombre, fuerza = configuracion.mano_jugador[i]

@@ -32,3 +32,5 @@ todas_cartas = [
     ("Bestia", 8), ("Hechicero", 5), ("Catapulta", 9), ("Espía", 2), ("Guardia", 6),
     ("Ladrón", 4), ("Cazador", 3), ("Bruja", 7), ("Monje", 3), ("Bárbaro", 6)
 ]
+fondo_original = pygame.image.load("Imagenes/fondo.jpg")
+fondo = pygame.transform.scale(fondo_original, (ANCHO, ALTO))

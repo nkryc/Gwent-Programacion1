@@ -5,6 +5,10 @@ import tablero
 
 pygame.init()
 pygame.display.set_caption("Gwent")
+
+pantalla = pygame.display.set_mode((configuracion.ANCHO, configuracion.ALTO))
+configuracion.fondo = pygame.transform.scale(configuracion.fondo_original, pantalla.get_size())
+
 funciones.nueva_ronda()
 
 jugando = True
