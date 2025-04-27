@@ -22,3 +22,12 @@ def nueva_ronda(reiniciar_todo=False):
     if reiniciar_todo:
         configuracion.jugador_rondas = 0
         configuracion.enemigo_rondas = 0
+
+def jugar_carta(indice):
+    carta = configuracion.mano_jugador[indice]
+    configuracion.mano_jugador.pop(indice)
+    configuracion.campo_jugador.append(carta)
+
+    carta_enemiga = configuracion.mano_enemigo[0]
+    configuracion.mano_enemigo.pop(0)
+    configuracion.campo_enemigo.append(carta_enemiga)
