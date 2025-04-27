@@ -36,6 +36,13 @@ while jugando:
                         if configuracion.turno >= configuracion.turnos_maximos:
                             configuracion.ronda_terminada = True
 
+    if configuracion.fin_del_juego:
+        configuracion.mostrar_pantalla_final()
+    else:
+        configuracion.dibujar()
+        configuracion.mostrar_info()
+        configuracion.mostrar_resultado_ronda()
+        funciones.revisar_final()
 
     pygame.display.update()
 
