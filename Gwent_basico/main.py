@@ -9,6 +9,7 @@ funciones.nueva_ronda()
 
 jugando = True
 while jugando:
+    
     tablero.pantalla.fill(configuracion.NEGRO)
 
     for evento in pygame.event.get():
@@ -16,17 +17,22 @@ while jugando:
             jugando = False
 
         if evento.type == pygame.MOUSEBUTTONDOWN:
+           
             if configuracion.fin_del_juego:
                 x, y = evento.pos
+               
                 if 400 <= x <= 600 and 400 <= y <= 450:
-                    funciones.nueva_ronda()
+                    funciones.nueva_ronda(reiniciar_todo=True)
+               
                 if 700 <= x <= 900 and 400 <= y <= 450:
                     jugando = False
+            
             elif configuracion.ronda_terminada:
                 if configuracion.esperando_clic:
                     funciones.nueva_ronda()
                 configuracion.esperando_clic = False
             else:
+               
                 x, y = evento.pos
                 if y > 500:
                     indice = x // 150
@@ -36,14 +42,15 @@ while jugando:
                         if configuracion.turno >= configuracion.turnos_maximos:
                             configuracion.ronda_terminada = True
 
+    
     if configuracion.fin_del_juego:
-        configuracion.mostrar_pantalla_final()
+        tablero.mostrar_pantalla_final()  
     else:
-        configuracion.dibujar()
-        configuracion.mostrar_info()
-        configuracion.mostrar_resultado_ronda()
-        funciones.revisar_final()
+        tablero.dibujar()  
+        tablero.mostrar_info()  
+        tablero.mostrar_resultado_ronda()  
+        funciones.revisar_final()  
 
-    pygame.display.update()
+    pygame.display.update()  
 
 pygame.quit()
