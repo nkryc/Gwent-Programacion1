@@ -1,5 +1,6 @@
 import pygame
 import configuracion
+import funciones
 
 pantalla = pygame.display.set_mode((configuracion.ANCHO, configuracion.ALTO))
 
