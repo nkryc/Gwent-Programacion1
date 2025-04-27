@@ -11,6 +11,15 @@ GRIS = (100, 100, 100)
 pygame.font.init()
 fuente = pygame.font.SysFont(None, 36)
 
+turno = 0
+turnos_maximos = 8
+ronda_terminada = False
+esperando_clic = False
+fin_del_juego = False
+resultado_final = ""
+
+jugador_rondas = 0
+enemigo_rondas = 0
 
 mano_jugador = []
 mano_enemigo = []
