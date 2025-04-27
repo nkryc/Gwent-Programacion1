@@ -31,3 +31,11 @@ def jugar_carta(indice):
     carta_enemiga = configuracion.mano_enemigo[0]
     configuracion.mano_enemigo.pop(0)
     configuracion.campo_enemigo.append(carta_enemiga)
+
+def revisar_final():
+    if configuracion.jugador_rondas == 2:
+        configuracion.resultado_final = "¡Victoria!"
+        configuracion.fin_del_juego = True
+    if configuracion.enemigo_rondas == 2:
+        configuracion.resultado_final = "Derrota"
+        configuracion.fin_del_juego = True
