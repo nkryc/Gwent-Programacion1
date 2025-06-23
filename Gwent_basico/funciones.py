@@ -18,8 +18,8 @@ def nueva_ronda(reiniciar_todo=False):
     configuracion.esperando_clic = False
     configuracion.fin_del_juego = False
     configuracion.resultado_final = ""
-    configuracion.efecto_jugador = None
-    configuracion.efecto_enemigo = None
+    configuracion.efectos_jugador.clear()
+    configuracion.efectos_enemigo.clear()
 
     if reiniciar_todo:
         configuracion.jugador_rondas = 0
@@ -36,18 +36,16 @@ def jugar_turno_enemigo():
         carta = configuracion.mano_enemigo.pop(0)
         configuracion.campo_enemigo.append(carta)
         aplicar_efecto(carta, configuracion.campo_enemigo, configuracion.campo_jugador)
-        
+
 def aplicar_efecto(carta, campo_propio, campo_enemigo):
     if len(carta) > 2 and callable(carta[2]):
         carta[2](campo_propio, campo_enemigo)
 
 def aplicar_efectos_persistentes():
-    if configuracion.efecto_jugador:
-        _, efecto = configuracion.efecto_jugador
-        configuracion.campo_jugador[:] = efecto(configuracion.campo_jugador)
-    if configuracion.efecto_enemigo:
-        _, efecto = configuracion.efecto_enemigo
-        configuracion.campo_enemigo[:] = efecto(configuracion.campo_enemigo)
+    for efecto in configuracion.efectos_jugador:
+        configuracion.campo_jugador[:] = efecto["funcion"](configuracion.campo_jugador)
+    for efecto in configuracion.efectos_enemigo:
+        configuracion.campo_enemigo[:] = efecto["funcion"](configuracion.campo_enemigo)
 
 def revisar_final():
     if configuracion.jugador_rondas == 2:

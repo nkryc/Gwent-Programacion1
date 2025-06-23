@@ -26,16 +26,14 @@ mano_enemigo = []
 campo_jugador = []
 campo_enemigo = []
 
-efecto_jugador = None 
-efecto_enemigo = None
+efectos_jugador = []
+efectos_enemigo = []
 
 def asignar_efecto_jugador(nombre, funcion):
-    global efecto_jugador
-    efecto_jugador = (nombre, funcion)
+    efectos_jugador.append({"nombre": nombre, "funcion": funcion})
 
 def asignar_efecto_enemigo(nombre, funcion):
-    global efecto_enemigo
-    efecto_enemigo = (nombre, funcion)
+   efectos_enemigo.append({"nombre": nombre, "funcion": funcion})
 
 todas_cartas = [
     ("Soldado", 5, lambda j, e: None),
