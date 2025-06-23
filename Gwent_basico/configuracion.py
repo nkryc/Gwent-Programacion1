@@ -37,5 +37,6 @@ todas_cartas = [
     ("Hechicero", 5, lambda j, e: e.append(("Debil", -1, lambda j,e: None))),
     ("Catapulta", 9, lambda j, e: None),
 ]
-fondo_original = pygame.image.load("Imagenes/fondo.jpg")
-fondo = pygame.transform.scale(fondo_original, (ANCHO, ALTO))
+
+fondo_original = pygame.Surface((ANCHO, ALTO))
+fondo_original.fill((30, 30, 30))
