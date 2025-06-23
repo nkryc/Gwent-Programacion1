@@ -3,7 +3,7 @@ import configuracion
 import funciones
 
 pantalla = pygame.display.set_mode((configuracion.ANCHO, configuracion.ALTO))
-ronda_mostrada = False  # bandera para evitar sumar varias veces
+ronda_mostrada = False  
 
 def texto(msg, x, y, color=configuracion.BLANCO):
     img = configuracion.fuente.render(msg, True, color)
@@ -12,12 +12,10 @@ def texto(msg, x, y, color=configuracion.BLANCO):
 def dibujar():
     pantalla.blit(configuracion.fondo, (0, 0))
 
-    # Títulos
     texto("CAMPO ENEMIGO", 20, 170)
     texto("TU CAMPO", 20, 420)
     texto("TU MANO", 20, 570)
 
-    # Campo del enemigo
     for i in range(5):
         x = i * 150 + 20
         y = 200
@@ -28,7 +26,6 @@ def dibujar():
         else:
             pygame.draw.rect(pantalla, (80, 80, 80), (x, y, 120, 80), 1, border_radius=8)
 
-    # Efectos del enemigo
     pygame.draw.rect(pantalla, configuracion.ROJO, (850, 220, 200, 80), 2, border_radius=6)
     if configuracion.efectos_enemigo:
         texto("Efectos:", 860, 230)
@@ -37,7 +34,6 @@ def dibujar():
     else:
         texto("Sin efecto", 860, 230)
         
-    # Campo del jugador
     for i in range(5):
         x = i * 150 + 20
         y = 450
@@ -48,7 +44,6 @@ def dibujar():
         else:
             pygame.draw.rect(pantalla, (80, 80, 80), (x, y, 120, 80), 1, border_radius=8)
 
-    # Efecto del jugador
     pygame.draw.rect(pantalla, configuracion.AZUL, (850, 470, 200, 80), 2, border_radius=6)
     if configuracion.efectos_jugador:
         texto("Efectos:", 860, 480)
@@ -57,7 +52,6 @@ def dibujar():
     else:
         texto("Sin efecto", 860, 480)
 
-    # Cartas en mano
     for i in range(len(configuracion.mano_jugador)):
         x = i * 150 + 20
         y = 600
