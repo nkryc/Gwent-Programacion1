@@ -12,7 +12,7 @@ pygame.font.init()
 fuente = pygame.font.SysFont(None, 36)
 
 turno = 0
-turnos_maximos = 8
+turnos_maximos = 6
 ronda_terminada = False
 esperando_clic = False
 fin_del_juego = False
@@ -26,17 +26,28 @@ mano_enemigo = []
 campo_jugador = []
 campo_enemigo = []
 
+efecto_jugador = None 
+efecto_enemigo = None
+
+def asignar_efecto_jugador(nombre, funcion):
+    global efecto_jugador
+    efecto_jugador = (nombre, funcion)
+
+def asignar_efecto_enemigo(nombre, funcion):
+    global efecto_enemigo
+    efecto_enemigo = (nombre, funcion)
 
 todas_cartas = [
-    ("Soldado", 5, lambda j, e: None),  # sin efecto
-    ("Arquero", 3, lambda j, e: e.append(("Herida", -2, lambda j,e: None))),  # daña al enemigo
+    ("Soldado", 5, lambda j, e: None),
+    ("Arquero", 3, lambda j, e: asignar_efecto_enemigo("Sangrado", lambda campo: [(n, max(f - 1, 0), ef) for n, f, *ef in campo])),
     ("Caballero", 6, lambda j, e: None),
-    ("Mago", 7, lambda j, e: j.append(("Refuerzo", 2, lambda j,e: None))),    # refuerza aliado
-    ("Espía", 2, lambda j, e: j.append(("Información", 1, lambda j,e: None))),
+    ("Mago", 7, lambda j, e: asignar_efecto_jugador("Refuerzo", lambda campo: [(n, f + 2, ef) for n, f, *ef in campo])),
+    ("Espía", 2, lambda j, e: j.append(("Información", 1, lambda j, e: None))),
     ("Bestia", 8, lambda j, e: None),
-    ("Hechicero", 5, lambda j, e: e.append(("Debil", -1, lambda j,e: None))),
-    ("Catapulta", 9, lambda j, e: None),
+    ("Hechicero", 5, lambda j, e: asignar_efecto_enemigo("Maleficio", lambda campo: [(n, max(f - 2, 0), ef) for n, f, *ef in campo])),
+    ("Catapulta", 9, lambda j, e: None)
 ]
 
 fondo_original = pygame.Surface((ANCHO, ALTO))
 fondo_original.fill((30, 30, 30))
+fondo = pygame.transform.scale(fondo_original, (ANCHO, ALTO))
