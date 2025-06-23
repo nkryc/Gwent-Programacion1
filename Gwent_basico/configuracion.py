@@ -28,9 +28,14 @@ campo_enemigo = []
 
 
 todas_cartas = [
-    ("Soldado", 5), ("Arquero", 3), ("Caballero", 6), ("Mago", 7), ("Asesino", 4),
-    ("Bestia", 8), ("Hechicero", 5), ("Catapulta", 9), ("Espía", 2), ("Guardia", 6),
-    ("Ladrón", 4), ("Cazador", 3), ("Bruja", 7), ("Monje", 3), ("Bárbaro", 6)
+    ("Soldado", 5, lambda j, e: None),  # sin efecto
+    ("Arquero", 3, lambda j, e: e.append(("Herida", -2, lambda j,e: None))),  # daña al enemigo
+    ("Caballero", 6, lambda j, e: None),
+    ("Mago", 7, lambda j, e: j.append(("Refuerzo", 2, lambda j,e: None))),    # refuerza aliado
+    ("Espía", 2, lambda j, e: j.append(("Información", 1, lambda j,e: None))),
+    ("Bestia", 8, lambda j, e: None),
+    ("Hechicero", 5, lambda j, e: e.append(("Debil", -1, lambda j,e: None))),
+    ("Catapulta", 9, lambda j, e: None),
 ]
 fondo_original = pygame.image.load("Imagenes/fondo.jpg")
 fondo = pygame.transform.scale(fondo_original, (ANCHO, ALTO))

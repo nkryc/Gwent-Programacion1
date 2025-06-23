@@ -24,13 +24,20 @@ def nueva_ronda(reiniciar_todo=False):
         configuracion.enemigo_rondas = 0
 
 def jugar_carta(indice):
+    
     carta = configuracion.mano_jugador[indice]
     configuracion.mano_jugador.pop(indice)
     configuracion.campo_jugador.append(carta)
+    aplicar_efecto(carta, configuracion.campo_jugador, configuracion.campo_enemigo)
 
-    carta_enemiga = configuracion.mano_enemigo[0]
-    configuracion.mano_enemigo.pop(0)
-    configuracion.campo_enemigo.append(carta_enemiga)
+    if configuracion.mano_enemigo:
+        carta_enemiga = configuracion.mano_enemigo.pop(0)
+        configuracion.campo_enemigo.append(carta_enemiga)
+        aplicar_efecto(carta_enemiga, configuracion.campo_enemigo, configuracion.campo_jugador)
+
+def aplicar_efecto(carta, campo_propio, campo_enemigo):
+    if len(carta) > 2 and callable(carta[2]):
+        carta[2](campo_propio, campo_enemigo)
 
 def revisar_final():
     if configuracion.jugador_rondas == 2:

@@ -64,9 +64,9 @@ while jugando:
                     if indice < len(configuracion.mano_jugador):
                         funciones.jugar_carta(indice)
                         configuracion.turno += 1
-                        if configuracion.turno >= configuracion.turnos_maximos:
-                            configuracion.ronda_terminada = True
-
+    if configuracion.turno >= configuracion.turnos_maximos:
+        configuracion.ronda_terminada = True
+        configuracion.esperando_clic = True
     
     if configuracion.fin_del_juego:
         tablero.mostrar_pantalla_final()  
