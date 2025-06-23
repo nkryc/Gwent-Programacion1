@@ -9,8 +9,8 @@ def fuerza(campo):
 
 def nueva_ronda(reiniciar_todo=False):
 
-    configuracion.mano_jugador = random.sample(configuracion.todas_cartas, 6)
-    configuracion.mano_enemigo = random.sample(configuracion.todas_cartas, 6)
+    configuracion.mano_jugador = random.sample(configuracion.todas_cartas, 5)
+    configuracion.mano_enemigo = random.sample(configuracion.todas_cartas, 5)
     configuracion.campo_jugador = []
     configuracion.campo_enemigo = []
     configuracion.turno = 0
@@ -26,17 +26,17 @@ def nueva_ronda(reiniciar_todo=False):
         configuracion.enemigo_rondas = 0
 
 def jugar_carta(indice):
-  
-    carta = configuracion.mano_jugador[indice]
-    configuracion.mano_jugador.pop(indice)
+    carta = configuracion.mano_jugador.pop(indice)
     configuracion.campo_jugador.append(carta)
     aplicar_efecto(carta, configuracion.campo_jugador, configuracion.campo_enemigo)
+    jugar_turno_enemigo()
 
+def jugar_turno_enemigo():
     if configuracion.mano_enemigo:
-        carta_enemiga = configuracion.mano_enemigo.pop(0)
-        configuracion.campo_enemigo.append(carta_enemiga)
-        aplicar_efecto(carta_enemiga, configuracion.campo_enemigo, configuracion.campo_jugador)
-
+        carta = configuracion.mano_enemigo.pop(0)
+        configuracion.campo_enemigo.append(carta)
+        aplicar_efecto(carta, configuracion.campo_enemigo, configuracion.campo_jugador)
+        
 def aplicar_efecto(carta, campo_propio, campo_enemigo):
     if len(carta) > 2 and callable(carta[2]):
         carta[2](campo_propio, campo_enemigo)

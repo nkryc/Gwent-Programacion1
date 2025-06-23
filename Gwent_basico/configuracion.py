@@ -12,7 +12,7 @@ pygame.font.init()
 fuente = pygame.font.SysFont(None, 36)
 
 turno = 0
-turnos_maximos = 6
+turnos_maximos = 5
 ronda_terminada = False
 esperando_clic = False
 fin_del_juego = False
@@ -42,7 +42,7 @@ todas_cartas = [
     ("Arquero", 3, lambda j, e: asignar_efecto_enemigo("Sangrado", lambda campo: [(n, max(f - 1, 0), ef) for n, f, *ef in campo])),
     ("Caballero", 6, lambda j, e: None),
     ("Mago", 7, lambda j, e: asignar_efecto_jugador("Refuerzo", lambda campo: [(n, f + 2, ef) for n, f, *ef in campo])),
-    ("Espía", 2, lambda j, e: j.append(("Información", 1, lambda j, e: None))),
+    ("Espía", 2, lambda j, e: None),
     ("Bestia", 8, lambda j, e: None),
     ("Hechicero", 5, lambda j, e: asignar_efecto_enemigo("Maleficio", lambda campo: [(n, max(f - 2, 0), ef) for n, f, *ef in campo])),
     ("Catapulta", 9, lambda j, e: None)
