@@ -12,8 +12,8 @@ def dibujar():
     pantalla.blit(configuracion.fondo, (0, 0))
 
     texto("CAMPO ENEMIGO", 20, 140)
-    texto("TU CAMPO", 20, 370)
-    texto("TU MANO", 20, 540)
+    texto("TU CAMPO", 20, 380)
+    texto("TU MANO", 20, 550)
     
     if configuracion.campo_enemigo:
         nombre = configuracion.campo_enemigo[-1][0]
@@ -28,13 +28,14 @@ def dibujar():
                 nombre, fuerza, *_ = carta
                 imagen = configuracion.imagenes_cartas.get(nombre)
                 if imagen:
+                    imagen = pygame.transform.scale(imagen, (120, 100))  
                     pantalla.blit(imagen, (x, y))
                     texto(f"{fuerza}", x + 90, y + 5)
                 else:
-                    pygame.draw.rect(pantalla, configuracion.ROJO, (x, y, 120, 80), border_radius=8)
-                    texto(f"{nombre} ({fuerza})", x + 8, y + 30)
+                    pygame.draw.rect(pantalla, configuracion.ROJO, (x, y, 120, 100), border_radius=8)
+                    texto(f"{nombre} ({fuerza})", x + 8, y + 35)
         else:
-            pygame.draw.rect(pantalla, configuracion.GRIS, (x, y, 120, 80), 1, border_radius=8)
+            pygame.draw.rect(pantalla, configuracion.GRIS, (x, y, 120, 100), 1, border_radius=8)
 
     for i in range(5):
         x = i * 150 + 20
@@ -45,31 +46,33 @@ def dibujar():
                 nombre, fuerza, *_ = carta
                 imagen = configuracion.imagenes_cartas.get(nombre)
                 if imagen:
+                    imagen = pygame.transform.scale(imagen, (120, 100))  # <-- ajustado
                     pantalla.blit(imagen, (x, y))
                     texto(f"{fuerza}", x + 90, y + 5)
                 else:
-                    pygame.draw.rect(pantalla, configuracion.VERDE, (x, y, 120, 80), border_radius=8)
-                    texto(f"{nombre} ({fuerza})", x + 8, y + 30)
+                    pygame.draw.rect(pantalla, configuracion.VERDE, (x, y, 120, 100), border_radius=8)
+                    texto(f"{nombre} ({fuerza})", x + 8, y + 35)
         else:
-            pygame.draw.rect(pantalla, configuracion.GRIS, (x, y, 120, 80), 1, border_radius=8)
+            pygame.draw.rect(pantalla, configuracion.GRIS, (x, y, 120, 100), 1, border_radius=8)
 
     for i, carta in enumerate(configuracion.mano_jugador):
         x = i * 150 + 20
-        y = 600
-        ancho, alto = 120, 80
+        y = 610  # ajustado por la altura
+        ancho, alto = 120, 100  # <-- nuevo alto
         if carta:
             nombre, fuerza, *_ = carta
             imagen = configuracion.imagenes_cartas.get(nombre)
             if imagen:
+                imagen = pygame.transform.scale(imagen, (ancho, alto))  # <-- ajustado
                 pantalla.blit(imagen, (x, y))
                 pygame.draw.rect(pantalla, configuracion.AZUL, (x, y, ancho, alto), 2, border_radius=8)
                 texto(f"{fuerza}", x + 90, y + 5)
             else:
                 pygame.draw.rect(pantalla, configuracion.AZUL, (x, y, ancho, alto), border_radius=8)
-                texto(f"{nombre} ({fuerza})", x + 5, y + 25)
+                texto(f"{nombre} ({fuerza})", x + 5, y + 35)
         else:
             pygame.draw.rect(pantalla, (60, 60, 60), (x, y, ancho, alto), border_radius=8)
-            texto("Jugado", x + 20, y + 30, color=configuracion.GRIS)
+            texto("Jugado", x + 20, y + 40, color=configuracion.GRIS)
 
     mostrar_efectos(850, 220, configuracion.efectos_enemigo, configuracion.ROJO)
     mostrar_efectos(850, 470, configuracion.efectos_jugador, configuracion.AZUL)
