@@ -78,7 +78,7 @@ def mostrar_efectos(x, y, efectos, color_borde):
     alto = 80 + max(0, (len(efectos) - 1) * 20)
     ancho = 200
     fondo = pygame.Surface((ancho, alto), pygame.SRCALPHA)
-    fondo.fill((30, 30, 30, 180))  # Fondo oscuro semitransparente
+    fondo.fill((30, 30, 30, 180))
     pantalla.blit(fondo, (x, y))
     pygame.draw.rect(pantalla, color_borde, (x, y, ancho, alto), 2, border_radius=6)
 
@@ -102,12 +102,8 @@ def mostrar_resultado_ronda():
         fe = funciones.fuerza(configuracion.campo_enemigo)
         if fj > fe:
             texto("¡Ganaste la ronda!", 520, 300)
-            if not configuracion.fin_del_juego:
-                configuracion.jugador_rondas += 1
         elif fj < fe:
             texto("Perdiste la ronda", 520, 300)
-            if not configuracion.fin_del_juego:
-                configuracion.enemigo_rondas += 1
         else:
             texto("Empate", 550, 300)
         texto("Haz clic para continuar", 500, 350)

@@ -17,6 +17,7 @@ turnos_maximos = 5
 ronda_terminada = False
 esperando_clic = False
 fin_del_juego = False
+ronda_evaluada = False
 resultado_final = ""
 
 jugador_rondas = 0

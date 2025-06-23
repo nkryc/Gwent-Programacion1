@@ -70,7 +70,8 @@ def main():
         tablero.pantalla.fill(configuracion.NEGRO)
         jugando = procesar_eventos()
 
-        if configuracion.turno >= configuracion.turnos_maximos:
+        if configuracion.turno >= configuracion.turnos_maximos and not configuracion.ronda_terminada:
+            funciones.finalizar_ronda()
             configuracion.ronda_terminada = True
             configuracion.esperando_clic = True
 
@@ -80,7 +81,6 @@ def main():
             tablero.dibujar()
             tablero.mostrar_info()
             tablero.mostrar_resultado_ronda()
-            funciones.revisar_final()
 
         pygame.display.update()
 

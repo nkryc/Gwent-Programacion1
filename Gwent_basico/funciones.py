@@ -8,7 +8,6 @@ def fuerza(campo):
     return total
 
 def nueva_ronda(reiniciar_todo=False):
-
     configuracion.mano_jugador = random.sample(configuracion.todas_cartas, 5)
     configuracion.mano_enemigo = random.sample(configuracion.todas_cartas, 5)
     configuracion.campo_jugador = []
@@ -20,6 +19,7 @@ def nueva_ronda(reiniciar_todo=False):
     configuracion.resultado_final = ""
     configuracion.efectos_jugador.clear()
     configuracion.efectos_enemigo.clear()
+    configuracion.ronda_evaluada = False
 
     if reiniciar_todo:
         configuracion.jugador_rondas = 0
@@ -57,3 +57,16 @@ def revisar_final():
     if configuracion.enemigo_rondas == 2:
         configuracion.resultado_final = "Derrota"
         configuracion.fin_del_juego = True
+
+def finalizar_ronda():
+    if configuracion.ronda_evaluada:
+        return
+    configuracion.ronda_evaluada = True
+
+    fj = fuerza(configuracion.campo_jugador)
+    fe = fuerza(configuracion.campo_enemigo)
+    if fj > fe:
+        configuracion.jugador_rondas += 1
+    elif fj < fe:
+        configuracion.enemigo_rondas += 1
+    revisar_final()
