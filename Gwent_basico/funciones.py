@@ -62,7 +62,8 @@ def finalizar_ronda():
     if configuracion.ronda_evaluada:
         return
     configuracion.ronda_evaluada = True
-
+    
+    aplicar_efectos_persistentes()
     fj = fuerza(configuracion.campo_jugador)
     fe = fuerza(configuracion.campo_enemigo)
     if fj > fe:

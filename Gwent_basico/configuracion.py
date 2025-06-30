@@ -32,21 +32,23 @@ efectos_jugador = []
 efectos_enemigo = []
 imagenes_cartas = {}
 
-def asignar_efecto_jugador(nombre, funcion):
-    efectos_jugador.append({"nombre": nombre, "funcion": funcion})
-
-def asignar_efecto_enemigo(nombre, funcion):
-   efectos_enemigo.append({"nombre": nombre, "funcion": funcion})
+def asignar_efecto(nombre, campo_objetivo):
+    def efecto(campo):
+        return [(n, max(f - 1, 0), ef) for n, f, *ef in campo]
+    if campo_objetivo is campo_jugador:
+        efectos_jugador.append({"nombre": nombre, "funcion": efecto})
+    else:
+        efectos_enemigo.append({"nombre": nombre, "funcion": efecto})
 
 todas_cartas = [
-    ("Soldado", 5, lambda j, e: None, "img/Soldado.jpg"),
-    ("Arquero", 3, lambda j, e: asignar_efecto_enemigo("Sangrado", lambda campo: [(n, max(f - 1, 0), ef) for n, f, *ef in campo]), "img/Arquero.jpg"),
-    ("Caballero", 6, lambda j, e: None, "img/Caballero.jpg"),
-    ("Mago", 7, lambda j, e: asignar_efecto_jugador("Refuerzo", lambda campo: [(n, f + 2, ef) for n, f, *ef in campo])),
+    ("Soldado", 5, lambda jugador, enemigo: None, "Gwent-Programacion1/img/Soldado.jpg"),
+    ("Arquero", 3, lambda jugador, enemigo: asignar_efecto("Sangrado", enemigo), "Gwent-Programacion1/img/Arquero.jpg"),
+    ("Caballero", 6, lambda j, e: None, "Gwent-Programacion1/img/Caballero.jpg"),
+    ("Mago", 7, lambda jugador, enemigo: asignar_efecto("Refuerzo", jugador)),
     ("Espía", 2, lambda j, e: None),
-    ("Bestia", 8, lambda j, e: None, "img/Bestia.jpg"),
-    ("Hechicero", 5, lambda j, e: asignar_efecto_enemigo("Maleficio", lambda campo: [(n, max(f - 2, 0), ef) for n, f, *ef in campo]),"img/Hechicero.jpg"),
-    ("Catapulta", 8, lambda j, e: None, "img/catapulta.jpg")
+    ("Bestia", 8, lambda j, e: None, "Gwent-Programacion1/img/Bestia.jpg"),
+    ("Hechicero", 5, lambda jugador, enemigo: asignar_efecto("Maleficio", enemigo),"Gwent-Programacion1/img/Hechicero.jpg"),
+    ("Catapulta", 8, lambda j, e: None, "Gwent-Programacion1/img/catapulta.jpg")
 ]
 
 def cargar_imagenes():
@@ -57,5 +59,5 @@ def cargar_imagenes():
             imagen = pygame.image.load(ruta)
             imagenes_cartas[nombre] = pygame.transform.scale(imagen, (120, 100))
 
-fondo_original = pygame.image.load("img/fondo.jpg")
+fondo_original = pygame.image.load("Gwent-Programacion1/img/fondo.jpg")
 fondo = pygame.transform.scale(fondo_original, (ANCHO, ALTO))
