@@ -7,7 +7,7 @@ pygame.init()
 pygame.display.set_caption("Gwent")
 
 pantalla = pygame.display.set_mode((configuracion.ANCHO, configuracion.ALTO))
-configuracion.fondo = pygame.transform.scale(configuracion.fondo_original, pantalla.get_size())
+configuracion.fondo = pygame.transform.scale(configuracion.fondo, pantalla.get_size())
 
 configuracion.cargar_imagenes()
 
@@ -16,6 +16,12 @@ def salir():
     exit()
 
 def mostrar_menu():
+    """
+    Muestra el menu principal del juego en pantalla y espera la interaccion del usuario.
+    El menú presenta el título del juego y las instrucciones para comenzar o salir.
+    - Presiona la tecla ESPACIO para iniciar el juego.
+    - Presiona la tecla ESC para salir del juego.
+    """
     while True:
         pantalla.fill(configuracion.NEGRO)
         titulo = configuracion.fuente.render("Gwent", True, configuracion.BLANCO)
@@ -35,6 +41,15 @@ def mostrar_menu():
                     salir()
 
 def procesar_eventos():
+    """
+    Procesa los eventos de la ventana principal del juego utilizando pygame.
+    - Detecta el cierre de la ventana y retorna False para finalizar el juego.
+    - Gestiona los clics del mouse:
+        - Si el juego ha terminado, permite reiniciar la ronda o salir segun la zona clickeada.
+        - Si la ronda ha terminado y se espera un clic, inicia una nueva ronda.
+        - Si el clic ocurre en la zona de la mano del jugador, permite jugar una carta y avanza el turno.
+    True si el juego debe continuar, False si debe finalizar.
+    """
     for evento in pygame.event.get():
         if evento.type == pygame.QUIT:
             return False
@@ -62,9 +77,17 @@ def procesar_eventos():
     return True
 
 def main():
+    """
+    Funcion principal del juego Gwent.
+    Esta función inicializa el menu, comienza una nueva ronda y gestiona el bucle principal del juego.
+    Durante la ejecucion, procesa los eventos del usuario, actualiza el estado del tablero y controla el flujo de la partida,
+    incluyendo la finalizacion de rondas y del juego.
+    Guarda el resultado al finalizar la partida.
+    """
     mostrar_menu()
     funciones.nueva_ronda()
     jugando = True
+    configuracion.resultado_guardado = False
 
     while jugando:
         tablero.pantalla.fill(configuracion.NEGRO)
@@ -77,6 +100,12 @@ def main():
 
         if configuracion.fin_del_juego:
             tablero.mostrar_pantalla_final()
+            if not configuracion.resultado_guardado:
+                try:
+                    funciones.guardar_resultado()
+                    configuracion.resultado_guardado = True
+                except Exception as e:
+                    print(f"Error al guardar el resultado: {e}")
         else:
             tablero.dibujar()
             tablero.mostrar_info()

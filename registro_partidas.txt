@@ -1,0 +1,25 @@
+Muestras del registro:
+
+Fecha y hora: 2025-07-03 03:24:44
+Resultado de la partida:
+Jugador: 0 rondas ganadas
+Enemigo: 2 rondas ganadas
+-----------
+Fecha y hora: 2025-07-03 03:27:58
+Resultado de la partida:
+Jugador: 0 rondas ganadas
+Enemigo: 2 rondas ganadas
+Resultado Final: Derrota
+-----------
+Fecha y hora: 2025-07-03 03:53:22
+Resultado de la partida:
+Jugador: 1 rondas ganadas
+Enemigo: 2 rondas ganadas
+Resultado Final: Derrota
+-----------
+Fecha y hora: 2025-07-03 03:53:58
+Resultado de la partida:
+Jugador: 2 rondas ganadas
+Enemigo: 0 rondas ganadas
+Resultado Final: ¡Victoria!
+-----------

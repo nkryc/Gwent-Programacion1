@@ -19,6 +19,7 @@ esperando_clic = False
 fin_del_juego = False
 ronda_evaluada = False
 resultado_final = ""
+resultado_guardado = False
 
 jugador_rondas = 0
 enemigo_rondas = 0
@@ -41,14 +42,14 @@ def asignar_efecto(nombre, campo_objetivo):
         efectos_enemigo.append({"nombre": nombre, "funcion": efecto})
 
 todas_cartas = [
-    ("Soldado", 5, lambda jugador, enemigo: None, "Gwent-Programacion1/img/Soldado.jpg"),
-    ("Arquero", 3, lambda jugador, enemigo: asignar_efecto("Sangrado", enemigo), "Gwent-Programacion1/img/Arquero.jpg"),
-    ("Caballero", 6, lambda j, e: None, "Gwent-Programacion1/img/Caballero.jpg"),
+    ("Soldado", 5, lambda jugador, enemigo: None, "Gwent_basico/img/Soldado.jpg"),
+    ("Arquero", 3, lambda jugador, enemigo: asignar_efecto("Sangrado", enemigo), "Gwent_basico/img/Arquero.jpg"),
+    ("Caballero", 6, lambda jugador, enemigo: None, "Gwent_basico/img/Caballero.jpg"),
     ("Mago", 7, lambda jugador, enemigo: asignar_efecto("Refuerzo", jugador)),
-    ("Espía", 2, lambda j, e: None),
-    ("Bestia", 8, lambda j, e: None, "Gwent-Programacion1/img/Bestia.jpg"),
-    ("Hechicero", 5, lambda jugador, enemigo: asignar_efecto("Maleficio", enemigo),"Gwent-Programacion1/img/Hechicero.jpg"),
-    ("Catapulta", 8, lambda j, e: None, "Gwent-Programacion1/img/catapulta.jpg")
+    ("Espía", 2, lambda jugador, enemigo: None),
+    ("Bestia", 8, lambda jugador, enemigo: None, "Gwent_basico/img/Bestia.jpg"),
+    ("Hechicero", 5, lambda jugador, enemigo: asignar_efecto("Maleficio", enemigo),"Gwent_basico/img/Hechicero.jpg"),
+    ("Catapulta", 8, lambda jugador, enemigo: None, "Gwent_basico/img/catapulta.jpg")
 ]
 
 def cargar_imagenes():
@@ -59,5 +60,10 @@ def cargar_imagenes():
             imagen = pygame.image.load(ruta)
             imagenes_cartas[nombre] = pygame.transform.scale(imagen, (120, 100))
 
-fondo_original = pygame.image.load("Gwent-Programacion1/img/fondo.jpg")
-fondo = pygame.transform.scale(fondo_original, (ANCHO, ALTO))
+try:
+    fondo_original = pygame.image.load("Gwent_basico/img/fondo.jpg")
+    fondo = pygame.transform.scale(fondo_original, (ANCHO, ALTO))
+except Exception as e:
+    print(f"No se pudo cargar el fondo: {e}")
+    fondo = pygame.Surface((ANCHO, ALTO))
+    fondo.fill(GRIS)

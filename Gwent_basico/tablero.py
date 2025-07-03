@@ -104,12 +104,12 @@ def mostrar_resultado_ronda():
         fj = funciones.fuerza(configuracion.campo_jugador)
         fe = funciones.fuerza(configuracion.campo_enemigo)
         if fj > fe:
-            texto("¡Ganaste la ronda!", 520, 300)
+            texto("¡Ganaste la ronda!", 520, 300, color= configuracion.VERDE)
         elif fj < fe:
-            texto("Perdiste la ronda", 520, 300)
+            texto("Perdiste la ronda", 520, 300, color= configuracion.ROJO)
         else:
-            texto("Empate", 550, 300)
-        texto("Haz clic para continuar", 500, 350)
+            texto("Empate", 550, 300, color= configuracion.NEGRO)
+        texto("Haz clic para continuar", 500, 350, color= configuracion.BLANCO)
 
 def mostrar_pantalla_final():
     pantalla.fill(configuracion.NEGRO)
