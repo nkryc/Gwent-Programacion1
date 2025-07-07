@@ -53,3 +53,33 @@ Jugador: 2 rondas ganadas
 Enemigo: 1 rondas ganadas
 Resultado Final: ¡Victoria!
 -----------
+Fecha y hora: 2025-07-07 12:20:31
+Resultado de la partida:
+Jugador: 0 rondas ganadas
+Enemigo: 2 rondas ganadas
+Resultado Final: Derrota
+-----------
+Fecha y hora: 2025-07-07 12:28:32
+Resultado de la partida:
+Jugador: 2 rondas ganadas
+Enemigo: 0 rondas ganadas
+Resultado Final: ¡Victoria!
+-----------
+Fecha y hora: 2025-07-07 12:39:35
+Resultado de la partida:
+Jugador: 1 rondas ganadas
+Enemigo: 2 rondas ganadas
+Resultado Final: Derrota
+-----------
+Fecha y hora: 2025-07-07 12:46:19
+Resultado de la partida:
+Jugador: 2 rondas ganadas
+Enemigo: 0 rondas ganadas
+Resultado Final: ¡Victoria!
+-----------
+Fecha y hora: 2025-07-07 12:51:06
+Resultado de la partida:
+Jugador: 0 rondas ganadas
+Enemigo: 2 rondas ganadas
+Resultado Final: Derrota
+-----------

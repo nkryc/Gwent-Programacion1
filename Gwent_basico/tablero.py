@@ -98,6 +98,7 @@ def mostrar_info():
     texto(f"Cartas en mano: {sum(1 for c in configuracion.mano_jugador if c)}", 1050, 640)
     texto(f"Rondas ganadas: {configuracion.jugador_rondas}", 1050, 20)
     texto(f"Rondas perdidas: {configuracion.enemigo_rondas}", 1050, 50)
+    texto("Saltar turno = P", 1050, 80, color=configuracion.BLANCO)
 
 def mostrar_resultado_ronda():
     if configuracion.ronda_terminada and configuracion.esperando_clic:

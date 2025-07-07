@@ -33,23 +33,31 @@ def nueva_ronda(reiniciar_todo=False):
         configuracion.enemigo_rondas = 0
 
 def jugar_carta(indice):
+    carta = configuracion.mano_jugador[indice]
     """
     Juega una carta de la mano del jugador y aplica su efecto.
     """
-    carta = configuracion.mano_jugador[indice]
     if carta is None:
-        return
+        return  # Previene jugar la misma carta dos veces
     configuracion.mano_jugador[indice] = None
     configuracion.campo_jugador.append(carta)
-    aplicar_efecto(carta, configuracion.campo_jugador, configuracion.campo_enemigo)
-    jugar_turno_enemigo()
+    if carta[2]:
+        carta[2](configuracion.campo_jugador, configuracion.campo_enemigo)
+    # Juega el enemigo
+    if configuracion.mano_enemigo:
+        carta_enemiga = random.choice(configuracion.mano_enemigo)
+        configuracion.mano_enemigo.remove(carta_enemiga)
+        configuracion.campo_enemigo.append(carta_enemiga)
+        if carta_enemiga[2]:
+            carta_enemiga[2](configuracion.campo_enemigo, configuracion.campo_jugador)
 
 def jugar_turno_enemigo():
     """
     Hace que el enemigo juegue una carta y aplique su efecto.
     """
     if configuracion.mano_enemigo:
-        carta_enemiga = configuracion.mano_enemigo.pop(0)
+        carta_enemiga = random.choice(configuracion.mano_enemigo)
+        configuracion.mano_enemigo.remove(carta_enemiga)
         configuracion.campo_enemigo.append(carta_enemiga)
         aplicar_efecto(carta_enemiga, configuracion.campo_enemigo, configuracion.campo_jugador)
 
