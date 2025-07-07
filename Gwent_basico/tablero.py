@@ -46,7 +46,7 @@ def dibujar():
                 nombre, fuerza, *_ = carta
                 imagen = configuracion.imagenes_cartas.get(nombre)
                 if imagen:
-                    imagen = pygame.transform.scale(imagen, (120, 100))  # <-- ajustado
+                    imagen = pygame.transform.scale(imagen, (120, 100))  
                     pantalla.blit(imagen, (x, y))
                     texto(f"{fuerza}", x + 90, y + 5)
                 else:
@@ -57,13 +57,13 @@ def dibujar():
 
     for i, carta in enumerate(configuracion.mano_jugador):
         x = i * 150 + 20
-        y = 610  # ajustado por la altura
-        ancho, alto = 120, 100  # <-- nuevo alto
+        y = 610  
+        ancho, alto = 120, 100  
         if carta:
             nombre, fuerza, *_ = carta
             imagen = configuracion.imagenes_cartas.get(nombre)
             if imagen:
-                imagen = pygame.transform.scale(imagen, (ancho, alto))  # <-- ajustado
+                imagen = pygame.transform.scale(imagen, (ancho, alto))  
                 pantalla.blit(imagen, (x, y))
                 pygame.draw.rect(pantalla, configuracion.AZUL, (x, y, ancho, alto), 2, border_radius=8)
                 texto(f"{fuerza}", x + 90, y + 5)

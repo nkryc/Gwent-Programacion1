@@ -43,13 +43,35 @@ def asignar_efecto(nombre, campo_objetivo):
 
 todas_cartas = [
     ("Soldado", 5, lambda jugador, enemigo: None, "Gwent_basico/img/Soldado.jpg"),
-    ("Arquero", 3, lambda jugador, enemigo: asignar_efecto("Sangrado", enemigo), "Gwent_basico/img/Arquero.jpg"),
+    ("Cazador", 3, lambda jugador, enemigo: asignar_efecto("Sangrado", enemigo), "Gwent_basico/img/Cazador.jpg"),
     ("Caballero", 6, lambda jugador, enemigo: None, "Gwent_basico/img/Caballero.jpg"),
-    ("Mago", 7, lambda jugador, enemigo: asignar_efecto("Refuerzo", jugador)),
-    ("Espía", 2, lambda jugador, enemigo: None),
+    ("Mago", 7, lambda jugador, enemigo: asignar_efecto("Refuerzo", jugador), "Gwent_basico/img/Mago.jpg"),
+    ("Espía", 2, lambda jugador, enemigo: None, "Gwent_basico/img/Espia.jpg"),
     ("Bestia", 8, lambda jugador, enemigo: None, "Gwent_basico/img/Bestia.jpg"),
-    ("Hechicero", 5, lambda jugador, enemigo: asignar_efecto("Maleficio", enemigo),"Gwent_basico/img/Hechicero.jpg"),
-    ("Catapulta", 8, lambda jugador, enemigo: None, "Gwent_basico/img/catapulta.jpg")
+    ("Hechicera", 5, lambda jugador, enemigo: asignar_efecto("Maleficio", enemigo),"Gwent_basico/img/Hechicera.jpg"),
+    ("Catapulta", 8, lambda jugador, enemigo: None, "Gwent_basico/img/Catapulta.jpg"),
+    ("Arpía", 2, lambda jugador, enemigo: None, "Gwent_basico/img/Arpia.jpg"),
+    ("Asesino", 6, lambda jugador, enemigo: None, "Gwent_basico/img/Asesino.jpg"),
+    ("Balista", 7, lambda jugador, enemigo: None, "Gwent_basico/img/Balista.jpg"),
+    ("Bárbaro", 5, lambda jugador, enemigo: None, "Gwent_basico/img/Barbaro.jpg"),
+    ("Basilisco", 6, lambda jugador, enemigo: None, "Gwent_basico/img/Basilisco.jpg"),
+    ("Bruja", 9, lambda jugador, enemigo: None, "Gwent_basico/img/Bruja.jpg"),
+    ("Brujo", 10, lambda jugador, enemigo: None, "Gwent_basico/img/Brujo.jpg"),
+    ("Caballeria", 5, lambda jugador, enemigo: None, "Gwent_basico/img/Caballeria.jpg"),
+    ("Demonio", 10, lambda jugador, enemigo: None, "Gwent_basico/img/Demonio.jpg"),
+    ("Diplomatico", 3, lambda jugador, enemigo: None, "Gwent_basico/img/Diplomatico.jpg"),
+    ("Dragon", 8, lambda jugador, enemigo: None, "Gwent_basico/img/Dragon.jpg"),
+    ("Elfo", 5, lambda jugador, enemigo: None, "Gwent_basico/img/Elfo.jpg"),
+    ("Enano", 4, lambda jugador, enemigo: None, "Gwent_basico/img/Enano.jpg"),
+    ("Espíritu", 8, lambda jugador, enemigo: None, "Gwent_basico/img/Espiritu.jpg"),
+    ("Gigante", 8, lambda jugador, enemigo: None, "Gwent_basico/img/Gigante.jpg"),
+    ("Golem", 6, lambda jugador, enemigo: None, "Gwent_basico/img/Golem.jpg"),
+    ("Grifo", 7, lambda jugador, enemigo: None, "Gwent_basico/img/Grifo.jpg"),
+    ("Guardián", 8, lambda jugador, enemigo: None, "Gwent_basico/img/Guardian.jpg"),
+    ("Insecto", 4, lambda jugador, enemigo: None, "Gwent_basico/img/Insecto.jpg"),
+    ("Mercenario", 5, lambda jugador, enemigo: None, "Gwent_basico/img/Mercenario.jpg"),
+    ("Sabio", 9, lambda jugador, enemigo: None, "Gwent_basico/img/Sabio.jpg"),
+    ("Vampíro", 8, lambda jugador, enemigo: None, "Gwent_basico/img/Vampiro.jpg")
 ]
 
 def cargar_imagenes():
